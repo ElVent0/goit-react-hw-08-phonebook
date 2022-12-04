@@ -1,34 +1,27 @@
-import css from './Filter.module.css';
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeFilter } from '../../redux/phonebookSlice';
-import { selectFilter } from '../../redux/selectors';
-
-const Filter = () => {
+import { Field, Input, Label } from './Filter.styled';
+import { useDispatch } from 'react-redux';
+import { changeFilter } from 'Redux/contacts/phonebookSlice';
+import { useState } from 'react';
+export const Filter = () => {
+  const [filterValue, setFilterValue] = useState('');
   const dispatch = useDispatch();
-  const filter = useSelector(selectFilter);
 
-  const handleChange = e => {
-    dispatch(changeFilter(e.target.value));
+  const handleChange = event => {
+    setFilterValue(event.target.value);
+    dispatch(changeFilter(event.target.value));
   };
 
   return (
-    <>
-      <p className={css.paragraph}>Find contacts by name</p>
-      <input
-        className={css.input}
-        type="text"
-        name="filter"
-        value={filter}
-        onChange={handleChange}
-      />
-    </>
+    <Field>
+      <Label>
+        Find contacts by name
+        <Input
+          type="text"
+          name="filter"
+          value={filterValue}
+          onChange={handleChange}
+        />
+      </Label>
+    </Field>
   );
-};
-
-export default Filter;
-
-Filter.propTypes = {
-  filter: PropTypes.string,
-  handleChange: PropTypes.func,
 };
