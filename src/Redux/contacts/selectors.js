@@ -9,7 +9,6 @@ export const getIsContactExist = state => Boolean(state.contacts.items.length);
 export const selectActiveContacts = createSelector(
   [selectContacts, selectFilter],
   (contacts, filter) => {
-    console.log(111, contacts, filter);
     return contacts.filter(item =>
       item.name.toLowerCase().includes(filter.toLowerCase())
     );
