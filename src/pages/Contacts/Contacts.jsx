@@ -22,7 +22,6 @@ const ContactsPage = () => {
       <h2>Contacts</h2>
       <Filter />
       {contacts && <ContactList />}
-      <ContactList />
     </Container>
   );
 };

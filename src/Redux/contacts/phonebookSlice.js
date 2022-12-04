@@ -42,6 +42,7 @@ const phonebookSlice = createSlice({
     [addContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
+      console.log(action.payload);
       state.items.push(action.payload);
     },
     [deleteContact.fulfilled](state, action) {
