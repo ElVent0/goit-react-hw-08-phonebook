@@ -5,18 +5,22 @@ import { Layout } from './Layout/Layout';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { selectIsRefreshing } from './../Redux/auth/authSelectors';
+import { selectIsLoggedIn } from './../Redux/auth/authSelectors';
 import { refreshUser } from 'Redux/auth/authOperations';
 
-const BlockAbout = lazy(() => import('../pages/Home/Home'));
-const ContactsBlock = lazy(() => import('../pages/Contacts/Contacts'));
+const BlockAbout = lazy(() => import('../pages/PageHome/Home'));
+const ContactsBlock = lazy(() => import('../pages/PageContacts/Contacts'));
 const RegistrationBlock = lazy(() =>
-  import('../pages/Registration/Registration')
+  import('../pages/PageRegistration/Registration')
 );
-const LoginBlock = lazy(() => import('../pages/Login/Login'));
+const LoginBlock = lazy(() => import('../pages/PageLogin/Login'));
 
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const isAuth = useSelector(selectIsLoggedIn);
+
+  console.log(isAuth, 111);
 
   useEffect(() => {
     dispatch(refreshUser());
